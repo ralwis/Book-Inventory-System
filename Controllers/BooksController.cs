@@ -23,10 +23,17 @@ namespace Book_Inventory_System.Controllers
             return Ok(books);
         }
 
+        [HttpGet("byShelve/{shelveId}")]
+        public IActionResult GetBooksByShelve(int shelveId)
+        {
+            var books = dc.Books.Include(b => b.Shelve).Where(b => b.ShelveId == shelveId).ToList();
+            return Ok(books);
+        }
+
         [HttpGet("{id}")]
         public IActionResult GetBookById(int id)
         {
-            var book = dc.Books.Find(id);
+            var book = dc.Books.Include(b => b.Shelve).FirstOrDefault(b => b.ID == id);
             if (book == null)
             {
                 return NotFound();
