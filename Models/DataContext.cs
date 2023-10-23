@@ -7,5 +7,7 @@ namespace Book_Inventory_System.Models
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         public DbSet<Book> Books { get; set; }
+        public DbSet<Shelve> Shelves { get; set; }
+
     }
 }

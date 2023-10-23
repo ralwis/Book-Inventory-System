@@ -4,6 +4,7 @@ using Book_Inventory_System.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Book_Inventory_System.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20231023142954_EditBookModel")]
+    partial class EditBookModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,18 +69,23 @@ namespace Book_Inventory_System.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Shelves");
+                    b.ToTable("Shelve");
                 });
 
             modelBuilder.Entity("Book_Inventory_System.Models.Book", b =>
                 {
                     b.HasOne("Book_Inventory_System.Models.Shelve", "Shelve")
-                        .WithMany()
+                        .WithMany("Books")
                         .HasForeignKey("ShelveId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Shelve");
+                });
+
+            modelBuilder.Entity("Book_Inventory_System.Models.Shelve", b =>
+                {
+                    b.Navigation("Books");
                 });
 #pragma warning restore 612, 618
         }

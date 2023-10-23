@@ -10,5 +10,7 @@ namespace Book_Inventory_System.Models
         public string? Author { get; set; }
         public string? ISBN { get; set; }
         public DateTime PublicationDate { get; set; }
+        public int ShelveId { get; set; }
+        public Shelve Shelve { get; set; }
     }
 }
