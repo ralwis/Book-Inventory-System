@@ -37,6 +37,19 @@ namespace Book_Inventory_System.Controllers
         [HttpPost]
         public IActionResult AddNewBook([FromBody] Book book)
         {
+            if (book == null)
+            {
+                return BadRequest("Invalid data");
+            }
+
+            var shelve = dc.Shelves.Find(book.ShelveId);
+            if (shelve == null)
+            {
+                return BadRequest("Shelve ID does not exist.");
+            }
+
+            book.Shelve = shelve;
+
             dc.Books.Add(book);
             dc.SaveChanges();
             return Ok(dc.Books.ToList());
