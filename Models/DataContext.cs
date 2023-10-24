@@ -8,6 +8,7 @@ namespace Book_Inventory_System.Models
 
         public DbSet<Book> Books { get; set; }
         public DbSet<Shelve> Shelves { get; set; }
+        public DbSet<User> Users { get; set; }
 
     }
 }
