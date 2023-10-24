@@ -8,6 +8,7 @@ namespace Book_Inventory_System.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BooksController : ControllerBase
     {
         private readonly DataContext dc;

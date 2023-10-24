@@ -6,6 +6,7 @@ namespace Book_Inventory_System.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ShelveController : Controller
     {
         private readonly DataContext dc;
